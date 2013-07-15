@@ -73,16 +73,16 @@ MRuby::Build.new do |conf|
 end
 
 # Define cross build settings
-# MRuby::CrossBuild.new('32bit') do |conf|
-#   toolchain :gcc
-#   
-#   conf.cc.flags << "-m32"
-#   conf.linker.flags << "-m32"
-#
-#   conf.build_mrbtest_lib_only
-#   
-#   conf.gem 'examples/mrbgems/c_and_ruby_extension_example'
-#
-#   conf.test_runner.command = 'env'
-#
-# end
+MRuby::CrossBuild.new('osx') do |conf|
+  toolchain :clang
+
+  conf.cc.flags << "-arch i386"
+  # conf.linker.flags << "-m32"
+
+  # conf.build_mrbtest_lib_only
+  
+  conf.gembox 'default'
+  # conf.gem 'examples/mrbgems/c_and_ruby_extension_example'
+
+  # conf.test_runner.command = 'env'
+end
